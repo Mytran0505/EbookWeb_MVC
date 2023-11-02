@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EbookWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231101223806_AddCategoryTableToDb")]
+    [Migration("20231102081218_AddCategoryTableToDb")]
     partial class AddCategoryTableToDb
     {
         /// <inheritdoc />
@@ -32,9 +32,8 @@ namespace EbookWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("DisplayOrder")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
