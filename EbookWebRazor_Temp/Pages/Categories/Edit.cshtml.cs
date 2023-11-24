@@ -30,8 +30,8 @@ namespace EbookWebRazor_Temp.Pages.Categories
             {
                 _context.Categories.Update(Category);
                 _context.SaveChanges();
-                //TempData["success"] = "Category created successfully";
-                return RedirectToAction("Index");
+                TempData["success"] = "Category created successfully";
+                return RedirectToPage("/Categories/Index");
             }
             return Page();
         }

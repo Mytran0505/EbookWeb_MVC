@@ -28,8 +28,8 @@ namespace EbookWebRazor_Temp.Pages.Categories
             }
             _context.Categories.Remove(Category);
             _context.SaveChanges();
-            //sTempData["success"] = "Category deleted successfully";
-            return RedirectToAction("Index");
+           TempData["success"] = "Category deleted successfully";
+            return RedirectToPage("/Categories/Index");
         }
     }
 }

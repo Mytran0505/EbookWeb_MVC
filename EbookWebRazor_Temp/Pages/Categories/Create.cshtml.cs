@@ -20,6 +20,7 @@ namespace EbookWebRazor_Temp.Pages.Categories
         public IActionResult OnPost() { 
             _context.Categories.Add(Category);
             _context.SaveChanges();
+            TempData["success"] = "Category created successfully";
             return RedirectToPage("Index");
         }
     }
