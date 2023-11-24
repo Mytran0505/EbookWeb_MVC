@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0-rc.2.23509.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ebook.DataAccess\Ebook.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
