@@ -2,12 +2,14 @@
 using EbookMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using EbookMVC.DataAccess.Repository.IRepository;
-namespace EbookMVCWeb.Controllers
+namespace EbookMVCWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _context;
-        public CategoryController(IUnitOfWork db) { 
+        public CategoryController(IUnitOfWork db)
+        {
             _context = db;
         }
         public IActionResult Index()
@@ -28,7 +30,8 @@ namespace EbookMVCWeb.Controllers
                 ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
             }
 
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 _context.Category.Add(obj);
                 _context.Save();
                 TempData["success"] = "Category created successfully";
@@ -38,11 +41,11 @@ namespace EbookMVCWeb.Controllers
         }
         public IActionResult Edit(int? id)
         {
-            if(id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _context.Category.Get(u=>u.Id==id);
+            Category? categoryFromDb = _context.Category.Get(u => u.Id == id);
             //Category? categoryFromDb1 = _context.Categories.FirstOrDefault(u => u.Id == id);
             //Category? categoryFromDb2 = _context.Categories.Where(u => u.Id == id).FirstOrDefault();
             if (categoryFromDb == null)
