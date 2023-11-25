@@ -1,26 +1,28 @@
 ﻿using EbookMVC.DataAccess.Data;
 using EbookMVC.DataAccess.Repository.IRepository;
-using EbookMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EbookMVC.DataAccess.Repository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository 
+
+    public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext _context;
-        public CategoryRepository(ApplicationDbContext context) : base(context)
+        public ICategoryRepository Category { get; private set; }
+
+        public UnitOfWork(ApplicationDbContext context)
         {
-            _context = context; 
+            _context = context;
+            Category = new CategoryRepository(_context);
         }
 
-        public void Update(Category obj)
+        public void Save()
         {
-            _context.Update(obj);
+            _context.SaveChanges();
         }
     }
 }

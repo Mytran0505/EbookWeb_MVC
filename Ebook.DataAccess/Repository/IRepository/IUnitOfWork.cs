@@ -1,5 +1,4 @@
-﻿using EbookMVC.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace EbookMVC.DataAccess.Repository.IRepository
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IUnitOfWork
     {
-        void Update(Category obj);
+        ICategoryRepository Category { get; }
+        void Save();
+        
     }
 }

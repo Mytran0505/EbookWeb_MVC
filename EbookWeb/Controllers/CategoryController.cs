@@ -6,13 +6,13 @@ namespace EbookMVCWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _context;
-        public CategoryController(ICategoryRepository db) { 
+        private readonly IUnitOfWork _context;
+        public CategoryController(IUnitOfWork db) { 
             _context = db;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _context.GetAll().ToList();
+            List<Category> objCategoryList = _context.Category.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -29,7 +29,7 @@ namespace EbookMVCWeb.Controllers
             }
 
             if (ModelState.IsValid) {
-                _context.Add(obj);
+                _context.Category.Add(obj);
                 _context.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
@@ -42,7 +42,7 @@ namespace EbookMVCWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _context.Get(u=>u.Id==id);
+            Category? categoryFromDb = _context.Category.Get(u=>u.Id==id);
             //Category? categoryFromDb1 = _context.Categories.FirstOrDefault(u => u.Id == id);
             //Category? categoryFromDb2 = _context.Categories.Where(u => u.Id == id).FirstOrDefault();
             if (categoryFromDb == null)
@@ -61,7 +61,7 @@ namespace EbookMVCWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Update(obj);
+                _context.Category.Update(obj);
                 _context.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
@@ -75,7 +75,7 @@ namespace EbookMVCWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _context.Get(u => u.Id == id);
+            Category? categoryFromDb = _context.Category.Get(u => u.Id == id);
             /*Category? categoryFromDb1 = _context.Categories.FirstOrDefault(u=>u.Id==id);
             Category? categoryFromDb2 = _context.Categories.Where(u => u.Id == id).FirstOrDefault();*/
             if (categoryFromDb == null)
@@ -87,12 +87,12 @@ namespace EbookMVCWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _context.Get(u => u.Id == id);
+            Category? obj = _context.Category.Get(u => u.Id == id);
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            _context.Remove(obj);
+            _context.Category.Remove(obj);
             _context.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
