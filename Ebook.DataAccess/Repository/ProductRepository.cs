@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace EbookMVC.DataAccess.Repository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository 
+    public class ProductRepository : Repository<Product>, IProductRepository 
     {
         private ApplicationDbContext _context;
-        public CategoryRepository(ApplicationDbContext context) : base(context)
+        public ProductRepository(ApplicationDbContext context) : base(context)
         {
             _context = context; 
         }
 
-        public void Update(Category obj)
+        public void Update(Product obj)
         {
-            _context.Categories.Update(obj);
+            _context.Product.Update(obj);
         }
     }
 }

@@ -66,7 +66,7 @@ namespace EbookMVCWeb.Areas.Admin.Controllers
             {
                 _context.Category.Update(obj);
                 _context.Save();
-                TempData["success"] = "Category created successfully";
+                TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
             return View();
