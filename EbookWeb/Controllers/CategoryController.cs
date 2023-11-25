@@ -1,18 +1,18 @@
 ﻿using Ebook.DataAccess.Data;
 using Ebook.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Ebook.DataAccess.Repository.IRepository;
 namespace EbookWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public CategoryController(ApplicationDbContext db) { 
+        private readonly ICategoryRepository _context;
+        public CategoryController(ICategoryRepository db) { 
             _context = db;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _context.Categories.ToList();
+            List<Category> objCategoryList = _context.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -29,8 +29,8 @@ namespace EbookWeb.Controllers
             }
 
             if (ModelState.IsValid) {
-                _context.Categories.Add(obj);
-                _context.SaveChanges();
+                _context.Add(obj);
+                _context.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
@@ -42,9 +42,9 @@ namespace EbookWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _context.Categories.Find(id);
-            /*Category? categoryFromDb1 = _context.Categories.FirstOrDefault(u=>u.Id==id);
-            Category? categoryFromDb2 = _context.Categories.Where(u => u.Id == id).FirstOrDefault();*/
+            Category? categoryFromDb = _context.Get(u=>u.Id==id);
+            //Category? categoryFromDb1 = _context.Categories.FirstOrDefault(u => u.Id == id);
+            //Category? categoryFromDb2 = _context.Categories.Where(u => u.Id == id).FirstOrDefault();
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -61,8 +61,8 @@ namespace EbookWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Categories.Update(obj);
-                _context.SaveChanges();
+                _context.Update(obj);
+                _context.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
@@ -75,7 +75,7 @@ namespace EbookWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _context.Categories.Find(id);
+            Category? categoryFromDb = _context.Get(u => u.Id == id);
             /*Category? categoryFromDb1 = _context.Categories.FirstOrDefault(u=>u.Id==id);
             Category? categoryFromDb2 = _context.Categories.Where(u => u.Id == id).FirstOrDefault();*/
             if (categoryFromDb == null)
@@ -87,13 +87,13 @@ namespace EbookWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _context.Categories.Find(id);
+            Category? obj = _context.Get(u => u.Id == id);
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            _context.Categories.Remove(obj);
-            _context.SaveChanges();
+            _context.Remove(obj);
+            _context.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
