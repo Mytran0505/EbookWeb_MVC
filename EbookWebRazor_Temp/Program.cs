@@ -1,4 +1,4 @@
-using EbookWebRazor_Temp.Data;
+using EbookMVCWebRazor_Temp.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

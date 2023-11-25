@@ -1,8 +1,8 @@
-using Ebook.Models;
+using EbookMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace EbookWeb.Controllers
+namespace EbookMVCWeb.Controllers
 {
     public class HomeController : Controller
     {

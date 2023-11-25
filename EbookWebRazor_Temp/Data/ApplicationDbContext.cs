@@ -1,7 +1,7 @@
-﻿using EbookWebRazor_Temp.Models;
+﻿using EbookMVCWebRazor_Temp.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EbookWebRazor_Temp.Data
+namespace EbookMVCWebRazor_Temp.Data
 {
     public class ApplicationDbContext : DbContext
     {

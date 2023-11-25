@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34227.203
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EbookWeb", "EbookWeb\EbookWeb.csproj", "{F3C427A1-27E2-4AB9-B87C-FE83D329FC3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EbookMVCWeb", "EbookWeb\EbookMVCWeb.csproj", "{F3C427A1-27E2-4AB9-B87C-FE83D329FC3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EbookWebRazor_Temp", "EbookWebRazor_Temp\EbookWebRazor_Temp.csproj", "{FBE22710-BB4D-46F7-91D8-2F47254B021D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EbookWebRazor_Temp", "EbookWebRazor_Temp\EbookWebRazor_Temp.csproj", "{FBE22710-BB4D-46F7-91D8-2F47254B021D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebook.DataAccess", "Ebook.DataAccess\Ebook.DataAccess.csproj", "{298BE4FA-866E-4212-A3D8-E70BB4DF9320}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EbookMVC.DataAccess", "Ebook.DataAccess\EbookMVC.DataAccess.csproj", "{298BE4FA-866E-4212-A3D8-E70BB4DF9320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebook.Models", "Ebook.Models\Ebook.Models.csproj", "{BC9678BC-F433-478F-91DE-B3DA3F0C6F33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EbookMVC.Models", "Ebook.Models\EbookMVC.Models.csproj", "{BC9678BC-F433-478F-91DE-B3DA3F0C6F33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebook.Utility", "Ebook.Utility\Ebook.Utility.csproj", "{4B9B59FE-1102-4EA7-8468-EF830648CFCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EbookMVC.Utility", "Ebook.Utility\EbookMVC.Utility.csproj", "{4B9B59FE-1102-4EA7-8468-EF830648CFCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
-using Ebook.DataAccess.Data;
-using Ebook.DataAccess.Repository;
-using Ebook.DataAccess.Repository.IRepository;
+using EbookMVC.DataAccess.Data;
+using EbookMVC.DataAccess.Repository;
+using EbookMVC.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

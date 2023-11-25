@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace EbookWebRazor_Temp.Migrations
+namespace EbookMVCWebRazor_Temp.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategorytoDb : Migration

@@ -1,6 +1,6 @@
-﻿using Ebook.DataAccess.Data;
-using Ebook.DataAccess.Repository.IRepository;
-using Ebook.Models;
+﻿using EbookMVC.DataAccess.Data;
+using EbookMVC.DataAccess.Repository.IRepository;
+using EbookMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ebook.DataAccess.Repository
+namespace EbookMVC.DataAccess.Repository
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository 
     {

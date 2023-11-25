@@ -1,9 +1,9 @@
-using EbookWebRazor_Temp.Data;
-using EbookWebRazor_Temp.Models;
+using EbookMVCWebRazor_Temp.Data;
+using EbookMVCWebRazor_Temp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EbookWebRazor_Temp.Pages.Categories
+namespace EbookMVCWebRazor_Temp.Pages.Categories
 {
     [BindProperties]
 

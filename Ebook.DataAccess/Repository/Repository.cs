@@ -4,11 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Ebook.DataAccess.Data;
-using Ebook.DataAccess.Repository.IRepository;
+using EbookMVC.DataAccess.Data;
+using EbookMVC.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ebook.DataAccess.Repository
+namespace EbookMVC.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
