@@ -2,6 +2,7 @@
 using EbookMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using EbookMVC.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace EbookMVCWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -15,11 +16,24 @@ namespace EbookMVCWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _context.Product.GetAll().ToList();
+            IEnumerable<SelectListItem> CategoryList = _context.Category.
+                GetAll().Select(u=> new SelectListItem
+            {
+                    Text = u.Name,
+                    Value = u.Id.ToString(),
+            });
             return View(objProductList);
         }
 
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> CategoryList = _context.Category.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString(),
+            });
+            //ViewBag.CategoryList = CategoryList;
+            ViewData["CategoryList"] = CategoryList;
             return View();
         }
         [HttpPost]
