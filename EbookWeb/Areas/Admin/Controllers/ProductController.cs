@@ -3,6 +3,7 @@ using EbookMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using EbookMVC.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using EbookMVC.Models.ViewModels;
 namespace EbookMVCWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -25,19 +26,39 @@ namespace EbookMVCWeb.Areas.Admin.Controllers
             return View(objProductList);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(int? id) //UpdateInsert
         {
-            IEnumerable<SelectListItem> CategoryList = _context.Category.GetAll().Select(u => new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.Id.ToString(),
-            });
+            //IEnumerable<SelectListItem> CategoryList = _context.Category.GetAll().Select(u => new SelectListItem
+            //{
+            //    Text = u.Name,
+            //    Value = u.Id.ToString(),
+            //});
             //ViewBag.CategoryList = CategoryList;
-            ViewData["CategoryList"] = CategoryList;
-            return View();
+            //ViewData["CategoryList"] = CategoryList;
+            ProductVM productVM = new()
+            {
+                CategoryList = _context.Category
+                .GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString(),
+                }),
+                Product = new Product()
+            };
+            if(id == null|| id == 0)
+            {
+                //create
+                return View(productVM);
+            }
+            else
+            {
+                //update
+                productVM.Product = _context.Product.Get(u=>u.Id==id);
+                return View(productVM);
+            }
         }
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
             //if (obj.Name == obj.DisplayOrder.ToString())
             //{
@@ -46,44 +67,21 @@ namespace EbookMVCWeb.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Product.Add(obj);
+                _context.Product.Add(productVM.Product);
                 _context.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
             }
-            return View();
-        }
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
+            else
             {
-                return NotFound();
+                productVM.CategoryList = _context.Category
+                .GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString(),
+                });
+                return View(productVM);
             }
-            Product? ProductFromDb = _context.Product.Get(u => u.Id == id);
-            //Product? ProductFromDb1 = _context.Categories.FirstOrDefault(u => u.Id == id);
-            //Product? ProductFromDb2 = _context.Categories.Where(u => u.Id == id).FirstOrDefault();
-            if (ProductFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(ProductFromDb);
-        }
-        [HttpPost]
-        public IActionResult Edit(Product obj)
-        {
-            //if (obj.Name == obj.DisplayOrder.ToString())
-            //{
-            //    ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
-            //}
-
-            if (ModelState.IsValid)
-            {
-                _context.Product.Update(obj);
-                _context.Save();
-                TempData["success"] = "Product updated successfully";
-                return RedirectToAction("Index");
-            }
-            return View();
         }
 
         public IActionResult Delete(int? id)
