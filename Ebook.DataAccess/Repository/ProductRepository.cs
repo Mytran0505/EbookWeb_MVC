@@ -20,7 +20,24 @@ namespace EbookMVC.DataAccess.Repository
 
         public void Update(Product obj)
         {
-            _context.Product.Update(obj);
+            var objFromb = _context.Product.FirstOrDefault(u => u.Id == obj.Id);
+            if (objFromb != null)
+            {
+                objFromb.Title = obj.Title;
+                objFromb.Description = obj.Description;
+                objFromb.Author = obj.Author;
+                objFromb.ISBN = obj.ISBN;
+                objFromb.ListPrice = obj.ListPrice;
+                objFromb.Price = obj.Price;
+                objFromb.Price100 = obj.Price100;
+                objFromb.Price50 = obj.Price50;
+                objFromb.CategoryId = obj.CategoryId;
+                if (obj.ImageUrl != null)
+                {
+                    objFromb.ImageUrl = obj.ImageUrl;
+                }
+            }
+            //_context.Product.Update(obj);
         }
     }
 }
