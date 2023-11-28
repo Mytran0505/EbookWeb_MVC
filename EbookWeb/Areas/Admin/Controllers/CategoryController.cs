@@ -2,9 +2,12 @@
 using EbookMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using EbookMVC.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
+using EbookMVC.Utility;
 namespace EbookMVCWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _context;

@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using EbookMVC.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EbookMVC.Models.ViewModels;
+using EbookMVC.Utility;
+using Microsoft.AspNetCore.Authorization;
 namespace EbookMVCWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _context;
