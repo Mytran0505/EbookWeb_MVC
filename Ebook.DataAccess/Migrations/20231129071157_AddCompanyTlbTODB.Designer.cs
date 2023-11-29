@@ -4,6 +4,7 @@ using EbookMVC.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EbookMVC.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231129071157_AddCompanyTlbTODB")]
+    partial class AddCompanyTlbTODB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,38 +101,6 @@ namespace EbookMVC.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Company");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Thu Duc",
-                            Name = "KMS",
-                            PhoneNumber = "0934324353",
-                            PostalCode = "70021",
-                            State = "HCM",
-                            StreetAddress = "12, Hoàng Diệu 2"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            City = "Quan 1",
-                            Name = "VNG",
-                            PhoneNumber = "05435434223",
-                            PostalCode = "70021",
-                            State = "HCM",
-                            StreetAddress = "3, Trần Phú"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Binh Thanh",
-                            Name = "DEK",
-                            PhoneNumber = "03213234244",
-                            PostalCode = "70021",
-                            State = "HCM",
-                            StreetAddress = "122, Lê Khiết"
-                        });
                 });
 
             modelBuilder.Entity("EbookMVC.Models.Product", b =>
@@ -482,9 +453,6 @@ namespace EbookMVC.DataAccess.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -497,8 +465,6 @@ namespace EbookMVC.DataAccess.Migrations
 
                     b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -563,17 +529,6 @@ namespace EbookMVC.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EbookMVC.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("EbookMVC.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
                 });
 #pragma warning restore 612, 618
         }
