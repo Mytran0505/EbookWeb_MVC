@@ -9,6 +9,7 @@
   <ItemGroup>
     <Content Remove="wwwroot\js\company.js" />
     <Content Remove="wwwroot\js\product.js" />
+    <Content Remove="wwwroot\js\shoppingCart.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +42,7 @@
 
   <ItemGroup>
     <None Include="wwwroot\js\company.js" />
+    <None Include="wwwroot\js\shoppingCart.js" />
     <None Include="wwwroot\js\product.js" />
   </ItemGroup>
 
