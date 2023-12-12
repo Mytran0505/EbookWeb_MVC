@@ -20,7 +20,7 @@ namespace EbookMVC.Models
         public DateTime ShippingDate { get; set; }
         public double OrderTotal { get; set; }
         public string? OrderStatus { get; set; }
-        public string? PaymentStatus { get;}
+        public string? PaymentStatus { get; set; }
         public string? TrackingNumber { get; set;}
         public string? Carrier { get; set; }
         public DateTime PaymentDate { get; set; }

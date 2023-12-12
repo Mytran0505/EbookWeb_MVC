@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EbookMVC.DataAccess.Repository.IRepository
 {
-    internal interface IOrderHeaderRepository: IRepository<OrderHeader>
+    public interface IOrderHeaderRepository: IRepository<OrderHeader>
     {
         void Update(OrderHeader orderHeader);
     }
