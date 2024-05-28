@@ -120,7 +120,7 @@ namespace EbookMVCWeb.Areas.Customer.Controllers
                 var domain = "https://localhost:7115/";
                 var options = new SessionCreateOptions
                 {
-                    SuccessUrl = domain + $"customer/cart/OrderComfirmation?id={ShoppingCartVM.OrderHeader.Id}",
+                    SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.Id}",
                     CancelUrl = domain + "customer/cart/index",
                     LineItems = new List<SessionLineItemOptions>(),
                     //{
@@ -156,10 +156,10 @@ namespace EbookMVCWeb.Areas.Customer.Controllers
                 Response.Headers.Add("Location", session.Url);
                 return new StatusCodeResult(303);
             }
-			return RedirectToAction(nameof(OrderComfirmation), new {id=ShoppingCartVM.OrderHeader.Id});
+			return RedirectToAction(nameof(OrderConfirmation), new {id=ShoppingCartVM.OrderHeader.Id});
 		}
 
-        public IActionResult OrderComfirmation(int id)
+        public IActionResult OrderConfirmation(int id)
         {
             OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(u=>u.Id == id,
                 includeProperties:"ApplicationUser");
